@@ -1,0 +1,629 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。
+
+Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《七天学会NodeJS》笔记">
+<meta property="og:url" content="http://tracer.xin/2016/05/07/《七天学会NodeJS》笔记/index.html">
+<meta property="og:site_name" content="Tracer Lee's blog">
+<meta property="og:description" content="Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。
+
+Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes">
+<meta property="og:updated_time" content="2016-05-12T16:55:47.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《七天学会NodeJS》笔记">
+<meta name="twitter:description" content="Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。
+
+Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 《七天学会NodeJS》笔记 | Tracer Lee's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tracer Lee's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《七天学会NodeJS》笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-07T23:35:26+08:00" content="2016-05-07">
+              2016-05-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。</p>
+<blockquote>
+<p>Node.js® is a JavaScript runtime built on <a href="https://developers.google.com/v8/" target="_blank" rel="external">Chrome’s V8 JavaScript engine</a>. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js’ package ecosystem, <a href="https://www.npmjs.com/" target="_blank" rel="external">npm</a>, is the largest ecosystem of open source libraries in the world.</p>
+<p>—— <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a></p>
+</blockquote>
+<p>这篇文章主要摘录一些个人认为的重点，希望加深对Node.js的熟悉。</p>
+<h2 id="Node-js基础"><a href="#Node-js基础" class="headerlink" title="Node.js基础"></a>Node.js基础</h2><h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><p><code>exports</code>对象是当前模块的导出对象，用于导出模块公有方法和属性。别的模块通过<code>require</code>函数使用当前模块时得到的就是当前模块的<code>exports</code>对象。以下例子中导出了一个公有方法。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Hello World!'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>exports</code>默认是<code>{}</code>，是<code>module.exports</code>的一个引用。</p>
+</blockquote>
+<h4 id="模块初始化"><a href="#模块初始化" class="headerlink" title="模块初始化"></a>模块初始化</h4><p>一个模块中的JS代码仅在模块<u><strong>第一次被使用时执行一次</strong></u>，并在执行过程中初始化模块的导出对象。之后，<u><strong>缓存起来</strong></u>的导出对象被重复利用。</p>
+<h4 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h4><p>通过命令行参数传递给NodeJS以启动程序的模块被称为主模块。主模块负责调度组成整个程序的其它模块完成工作。例如通过以下命令启动程序时，<code>main.js</code>就是主模块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node main.js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明多次<code>require</code>不会导致执行多次模块内的程序内容。</p>
+</blockquote>
+<ul>
+<li>NodeJS是一个JS脚本解析器，任何操作系统下安装NodeJS本质上做的事情都是把NodeJS执行程序复制到一个目录，然后保证这个目录在系统PATH环境变量下，以便终端下可以使用<code>node</code>命令。</li>
+<li>终端下直接输入<code>node</code>命令可进入命令交互模式，很适合用来测试一些JS代码片段，比如正则表达式。</li>
+<li>NodeJS使用<a href="http://wiki.commonjs.org/" target="_blank" rel="external">CMD</a>模块系统，主模块作为程序入口点，所有模块在执行过程中只初始化一次。</li>
+<li>除非JS模块不能满足需求，否则不要轻易使用二进制模块，否则你的用户会叫苦连天。</li>
+</ul>
+<blockquote>
+<p>Node.js使用CMD规范，Sea.js也是遵循CMD规范。</p>
+</blockquote>
+<h2 id="代码的组织和部署"><a href="#代码的组织和部署" class="headerlink" title="代码的组织和部署"></a>代码的组织和部署</h2><h3 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h3><ol>
+<li>内置模块</li>
+<li>node_modules目录</li>
+<li>NODE_PATH环境变量</li>
+</ol>
+<h3 id="包（package）"><a href="#包（package）" class="headerlink" title="包（package）"></a>包（package）</h3><p>当模块的文件名是<code>index.js</code>，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat'</span>);</span><br><span class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat/index'</span>);</span><br></pre></td></tr></table></figure>
+<p>这样处理后，就只需要把包目录路径传递给<code>require</code>函数，感觉上整个目录被当作单个模块使用，更有整体感。</p>
+<blockquote>
+<p>所以就是<code>require</code>一个文件夹就等同于<code>require</code>里面的<code>index.js</code>模块，这个很方便。</p>
+</blockquote>
+<h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"name"</span>: <span class="string">"node-echo"</span>,</span><br><span class="line"><span class="attr">"main"</span>: <span class="string">"./lib/echo.js"</span>,</span><br><span class="line"><span class="attr">"dependencies"</span>: &#123;</span><br><span class="line"><span class="attr">"argv"</span>: <span class="string">"0.0.2"</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>name</code>是包名称，<code>main</code>是入口模块（主模块），<code>dependencies</code>是依赖模块。</p>
+</blockquote>
+<h4 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h4><p>语义版本号分为<code>X.Y.Z</code>三位，分别代表主版本号、次版本号和补丁版本号。当代码变更时，版本号按以下原则更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果只是修复bug，需要更新Z位。</span><br><span class="line">如果是新增了功能，但是向下兼容，需要更新Y位。</span><br><span class="line">如果有大变动，向下不兼容，需要更新X位。</span><br></pre></td></tr></table></figure>
+<h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><ul>
+<li>使用<code>npm help</code>可查看某条命令的详细帮助，例如<code>npm help install</code>。</li>
+<li>在<code>package.json</code>所在目录下使用<code>npm install . -g</code>可先在本地安装当前命令行程序，可用于发布前的本地测试。</li>
+<li>使用<code>npm update</code>可以把当前目录下<code>node_modules</code>子目录里边的对应模块更新至最新版本。</li>
+<li>使用<code>npm update -g</code>可以把全局安装的对应命令行程序更新至最新版。</li>
+<li>使用<code>npm cache clear</code>可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。</li>
+</ul>
+<h4 id="使用NodeJS编写代码前需要做的准备工作"><a href="#使用NodeJS编写代码前需要做的准备工作" class="headerlink" title="使用NodeJS编写代码前需要做的准备工作"></a>使用NodeJS编写代码前需要做的准备工作</h4><ul>
+<li>编写代码前先规划好目录结构，才能做到有条不紊。</li>
+<li>稍大些的程序可以将代码拆分为多个模块管理，更大些的程序可以使用包来组织模块。</li>
+<li>合理使用<code>node_modules</code>和<code>NODE_PATH</code>来解耦包的使用方式和物理路径。</li>
+</ul>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h4 id="小文件拷贝"><a href="#小文件拷贝" class="headerlink" title="小文件拷贝"></a>小文件拷贝</h4><p><em>代码片段</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.writeFileSync(dst, fs.readFileSync(src)); <span class="comment">// dst:目标路径,src:源路径</span></span><br></pre></td></tr></table></figure>
+<h4 id="大文件拷贝"><a href="#大文件拷贝" class="headerlink" title="大文件拷贝"></a>大文件拷贝</h4><p><em>代码片段</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.createReadStream(src).pipe(fs.createWriteStream(dst));</span><br></pre></td></tr></table></figure>
+<p>以上程序使用<code>fs.createReadStream</code>创建了一个源文件的只读数据流，并使用<code>fs.createWriteStream</code>创建了一个目标文件的只写数据流，并且用<code>pipe</code>方法把两个数据流连接了起来。连接起来后发生的事情，说得抽象点的话，水顺着水管从一个桶流到了另一个桶。</p>
+<p><code>process</code>是一个全局变量，可通过<code>process.argv</code>获得命令行参数。</p>
+<p>Node.js提供了基本的文件操作API，<code>require(&#39;fs&#39;)</code>即可使用。</p>
+<h4 id="Buffer（数据块）"><a href="#Buffer（数据块）" class="headerlink" title="Buffer（数据块）"></a>Buffer（数据块）</h4><p><em>官方文档：</em><a href="http://nodejs.org/api/buffer.html" target="_blank" rel="external">http://nodejs.org/api/buffer.html</a></p>
+<h4 id="Stream（数据流）"><a href="#Stream（数据流）" class="headerlink" title="Stream（数据流）"></a>Stream（数据流）</h4><p><em>官方文档：</em><a href="http://nodejs.org/api/stream.html" target="_blank" rel="external">http://nodejs.org/api/stream.html</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://nqdeng.github.io/7-days-nodejs/" target="_blank" rel="external">七天学会NodeJS</a></li>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a></li>
+<li><a href="https://papahot.gitbooks.io/7-days-nodejs/content/" target="_blank" rel="external">7-days-nodejs</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag">#笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/19/在nodejs环境实现phantomjs的截图功能/" rel="next" title="在nodejs环境实现phantomjs的截图功能">
+                <i class="fa fa-chevron-left"></i> 在nodejs环境实现phantomjs的截图功能
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/private/img/Doraemon.jpg"
+               alt="Tracer Lee" />
+          <p class="site-author-name" itemprop="name">Tracer Lee</p>
+          <p class="site-description motion-element" itemprop="description">学习，输出</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js基础"><span class="nav-number">1.</span> <span class="nav-text">Node.js基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exports"><span class="nav-number">1.0.1.</span> <span class="nav-text">exports</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块初始化"><span class="nav-number">1.0.2.</span> <span class="nav-text">模块初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主模块"><span class="nav-number">1.0.3.</span> <span class="nav-text">主模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码的组织和部署"><span class="nav-number">2.</span> <span class="nav-text">代码的组织和部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块路径解析规则"><span class="nav-number">2.1.</span> <span class="nav-text">模块路径解析规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包（package）"><span class="nav-number">2.2.</span> <span class="nav-text">包（package）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json"><span class="nav-number">2.2.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#版本号"><span class="nav-number">2.2.2.</span> <span class="nav-text">版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NPM"><span class="nav-number">2.2.3.</span> <span class="nav-text">NPM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用NodeJS编写代码前需要做的准备工作"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用NodeJS编写代码前需要做的准备工作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件操作"><span class="nav-number">3.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小文件拷贝"><span class="nav-number">3.0.1.</span> <span class="nav-text">小文件拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大文件拷贝"><span class="nav-number">3.0.2.</span> <span class="nav-text">大文件拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer（数据块）"><span class="nav-number">3.0.3.</span> <span class="nav-text">Buffer（数据块）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream（数据流）"><span class="nav-number">3.0.4.</span> <span class="nav-text">Stream（数据流）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tracer Lee</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

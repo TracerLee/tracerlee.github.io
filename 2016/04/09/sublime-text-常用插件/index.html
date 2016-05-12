@@ -84,34 +84,27 @@
 
 
 
-<meta name="description" content="一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：
-
-
-编写教程
-项目API文档
-写书
-记录">
+<meta name="description" content="sublime text之所以强大其中一个原因就是强大的插件支持，具体如何安装Package Control请参考官网说明（https://packagecontrol.io/installation）。
+此文默认读者拥有一定sublime text插件安装经验，只介绍我认为实用的一些插件。
+语法检测SublimeLinter只是一个管理工具
+SublimeLinter-jshintSublime">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开始你的gitbook">
-<meta property="og:url" content="http://tracer.xin/2016/04/03/gitbook/index.html">
+<meta property="og:title" content="sublime text 常用插件">
+<meta property="og:url" content="http://tracer.xin/2016/04/09/sublime-text-常用插件/index.html">
 <meta property="og:site_name" content="Tracer Lee's blog">
-<meta property="og:description" content="一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：
-
-
-编写教程
-项目API文档
-写书
-记录">
-<meta property="og:updated_time" content="2016-05-12T16:57:42.838Z">
+<meta property="og:description" content="sublime text之所以强大其中一个原因就是强大的插件支持，具体如何安装Package Control请参考官网说明（https://packagecontrol.io/installation）。
+此文默认读者拥有一定sublime text插件安装经验，只介绍我认为实用的一些插件。
+语法检测SublimeLinter只是一个管理工具
+SublimeLinter-jshintSublime">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/68731f4agw1f2r03o3xuvj20lg04m3z4.jpg">
+<meta property="og:updated_time" content="2016-05-12T16:58:52.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开始你的gitbook">
-<meta name="twitter:description" content="一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：
-
-
-编写教程
-项目API文档
-写书
-记录">
+<meta name="twitter:title" content="sublime text 常用插件">
+<meta name="twitter:description" content="sublime text之所以强大其中一个原因就是强大的插件支持，具体如何安装Package Control请参考官网说明（https://packagecontrol.io/installation）。
+此文默认读者拥有一定sublime text插件安装经验，只介绍我认为实用的一些插件。
+语法检测SublimeLinter只是一个管理工具
+SublimeLinter-jshintSublime">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/68731f4agw1f2r03o3xuvj20lg04m3z4.jpg">
 
 
 
@@ -129,7 +122,7 @@
   };
 </script>
 
-  <title> 开始你的gitbook | Tracer Lee's blog </title>
+  <title> sublime text 常用插件 | Tracer Lee's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +242,7 @@
             
             
               
-                开始你的gitbook
+                sublime text 常用插件
               
             
           </h1>
@@ -261,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-03T02:40:50+08:00" content="2016-04-03">
-              2016-04-03
+            <time itemprop="dateCreated" datetime="2016-04-09T03:16:34+08:00" content="2016-04-09">
+              2016-04-09
             </time>
           </span>
 
@@ -289,35 +282,25 @@
       
 
       
-        <p>一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：</p>
-<blockquote>
-<ul>
-<li>编写教程</li>
-<li>项目API文档</li>
-<li>写书</li>
-<li>记录</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="出现的意外"><a href="#出现的意外" class="headerlink" title="出现的意外"></a>出现的意外</h3><p>发现不同node版本的安装过程出现了不一样的结果。</p>
-<p>0.12.*版本的安装gitbook会出现异常抛出。</p>
-<p>截至笔者写稿时间（2016年4月2日04:51:43）node版本为4.4.2，安装gitbook无异常。</p>
-<h2 id="将gitbook转移到移动设备上阅读"><a href="#将gitbook转移到移动设备上阅读" class="headerlink" title="将gitbook转移到移动设备上阅读"></a>将gitbook转移到移动设备上阅读</h2><p>今天（2016年4月2日18:20:21）突发奇想，能不能借助手机或者平板等移动设备随时离线随地阅读gitbook呢？答案是可以的，而且也不是很复杂，具体操作如下（以iPhone为例）：</p>
-<ul>
-<li>进入你所感兴趣的gitbook主页，比如：<a href="https://www.gitbook.com/book/li-xinyang/frontend-notebook/details" target="_blank" rel="external">前端开发笔记本</a></li>
-<li>主页右侧其实提供了多种格式进行阅读<ul>
-<li>Read按钮，直接以网页形式打开gitbook，在国内网速堪忧</li>
-<li>PDF按钮，下载PDF格式gitbook到本地，适合各种设备</li>
-<li>ePub按钮，下载ePub格式gitbook到本地，适合iBooks等软件，阅读体验较佳</li>
-<li>Mobi按钮，下载Mobi格式gitbook到本地，适合Kindle</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>以ePub格式为例，点击ePub按钮，下载文件到本地，将文件传输到iPhone，用任何传输方式都可以（我用QQ传送）</li>
-<li>在iPhone上点击文件，使用其他应用打开，选择拷贝至iBooks，完成任务，可以愉快地到iBooks上享受阅读了</li>
-<li>BTW，iPhone下的iBooks软件阅读ePub格式的体验不错，渲染出的阅读页面十分舒服，唯一不足的是无法通过iBooks直接分享书籍，只能在其他途径分享文件</li>
-</ul>
+        <p>sublime text之所以强大其中一个原因就是强大的插件支持，具体如何安装Package Control请参考官网说明（<a href="https://packagecontrol.io/installation）。" target="_blank" rel="external">https://packagecontrol.io/installation）。</a></p>
+<p>此文默认读者拥有一定sublime text插件安装经验，只介绍我认为实用的一些插件。</p>
+<h1 id="语法检测"><a href="#语法检测" class="headerlink" title="语法检测"></a>语法检测</h1><h2 id="SublimeLinter"><a href="#SublimeLinter" class="headerlink" title="SublimeLinter"></a>SublimeLinter</h2><p>只是一个管理工具</p>
+<h2 id="SublimeLinter-jshint"><a href="#SublimeLinter-jshint" class="headerlink" title="SublimeLinter-jshint"></a>SublimeLinter-jshint</h2><p>SublimeLinter的JavaScript检测的扩展插件<a id="more"></a></p>
+<p>依赖jshint，需要用node.js全局安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node i jshint -gd</span><br></pre></td></tr></table></figure>
+<p>参考配置:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "asi"      : true,</span><br><span class="line">  "browser"  : true,</span><br><span class="line">  "eqeqeq"   : false,</span><br><span class="line">  "-W041"    : false, // 这个可以忽略没有使用全等于的警告 </span><br><span class="line">  "eqnull"   : true,</span><br><span class="line">  "es3"      : true, // 默认是es3语法检测，若要开启es其他版本，删除此行并设置"esversion":6</span><br><span class="line">  "expr"     : true,</span><br><span class="line">  "jquery"   : true,</span><br><span class="line">  "latedef"  : true,</span><br><span class="line">  "laxbreak" : true,</span><br><span class="line">  "nonbsp"   : true,</span><br><span class="line">  "strict"   : true,</span><br><span class="line">  "undef"    : true,</span><br><span class="line">  "unused"   : true,</span><br><span class="line">  "devel"    : true, // 忽略console,alert警告</span><br><span class="line">  "global"   : &#123;     // 全局变量忽略列表</span><br><span class="line">    "seajs"   : true,</span><br><span class="line">    "define"  : true</span><br><span class="line">  &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jshint配置默认依赖父深度为3的文件夹下.jshintrc文件的配置。</p>
+<p>深度可在SublimeLinter用户设置中设置”rc_search_limit”: 3。</p>
+<p><strong>新建一个无文件名文件</strong>的方法，比如新建”.jshintrc”，就直接新建”.jshintrc.”，多了个”.”就可以了。</p>
+<h2 id="SublimeLinter-contrib-eslint"><a href="#SublimeLinter-contrib-eslint" class="headerlink" title="SublimeLinter-contrib-eslint"></a>SublimeLinter-contrib-eslint</h2><p>JS/ES6/JSX等语法检测插件，较为强大，缺点是速度比较慢</p>
+<p>依赖：<a href="http://eslint.org/" target="_blank" rel="external">eslint</a>、babel-eslint，需要npm全局安装</p>
+<p>参考配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"env"</span>: &#123;</span><br><span class="line">		<span class="attr">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">		<span class="attr">"node"</span>: <span class="literal">true</span>,</span><br><span class="line">		<span class="attr">"es6"</span>: <span class="literal">true</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">	<span class="attr">"ecmaFeatures"</span>: &#123;</span><br><span class="line">		<span class="attr">"jsx"</span>: <span class="literal">true</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">"rules"</span>: &#123;</span><br><span class="line">		<span class="attr">"semi"</span>: [<span class="number">2</span>, <span class="string">"always"</span>],</span><br><span class="line">		<span class="attr">"quotes"</span>: [<span class="number">2</span>, <span class="string">"single"</span>]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果同时安装了eslint和jshint的话，在Sublimelinter设置中各自的@disable可以对其禁用，否则两个会同时检测语法。</p>
+<p>ESLint规则官方文档<a href="http://eslint.org/docs/rules/" target="_blank" rel="external">http://eslint.org/docs/rules/</a></p>
+<p>如图，每一个配置的代码中，注释说明了配置的名值对</p>
+<p><img src="http://ww1.sinaimg.cn/large/68731f4agw1f2r03o3xuvj20lg04m3z4.jpg" alt=""></p>
 
       
     </div>
@@ -348,16 +331,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/03/git和github的使用(Windows)/" rel="next" title="git和github的使用(Windows)">
-                <i class="fa fa-chevron-left"></i> git和github的使用(Windows)
+              <a href="/2016/04/03/hexo-tips/" rel="next" title="Hexo Tips">
+                <i class="fa fa-chevron-left"></i> Hexo Tips
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/03/hexo-tips/" rel="prev" title="Hexo Tips">
-                Hexo Tips <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/17/开始你的electron/" rel="prev" title="开始你的electron">
+                开始你的electron <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,7 +448,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的意外"><span class="nav-number">1.1.</span> <span class="nav-text">出现的意外</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将gitbook转移到移动设备上阅读"><span class="nav-number">2.</span> <span class="nav-text">将gitbook转移到移动设备上阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法检测"><span class="nav-number">1.</span> <span class="nav-text">语法检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SublimeLinter"><span class="nav-number">1.1.</span> <span class="nav-text">SublimeLinter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SublimeLinter-jshint"><span class="nav-number">1.2.</span> <span class="nav-text">SublimeLinter-jshint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SublimeLinter-contrib-eslint"><span class="nav-number">1.3.</span> <span class="nav-text">SublimeLinter-contrib-eslint</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

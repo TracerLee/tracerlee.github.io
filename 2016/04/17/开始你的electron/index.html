@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="工具," />
+  <meta name="keywords" content="工具,学习," />
 
 
 
@@ -84,34 +84,24 @@
 
 
 
-<meta name="description" content="一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：
+<meta name="description" content="使用electron开发桌面应用遇到的问题和tips记录。
 
-
-编写教程
-项目API文档
-写书
-记录">
+$ electron .没有作用，可能全局环境安装出现了一些问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开始你的gitbook">
-<meta property="og:url" content="http://tracer.xin/2016/04/03/gitbook/index.html">
+<meta property="og:title" content="开始你的electron">
+<meta property="og:url" content="http://tracer.xin/2016/04/17/开始你的electron/index.html">
 <meta property="og:site_name" content="Tracer Lee's blog">
-<meta property="og:description" content="一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：
+<meta property="og:description" content="使用electron开发桌面应用遇到的问题和tips记录。
 
-
-编写教程
-项目API文档
-写书
-记录">
-<meta property="og:updated_time" content="2016-05-12T16:57:42.838Z">
+$ electron .没有作用，可能全局环境安装出现了一些问题">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/68731f4agw1f2z57jnc97j20nv0eaae5.jpg">
+<meta property="og:updated_time" content="2016-05-12T16:59:03.514Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开始你的gitbook">
-<meta name="twitter:description" content="一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：
+<meta name="twitter:title" content="开始你的electron">
+<meta name="twitter:description" content="使用electron开发桌面应用遇到的问题和tips记录。
 
-
-编写教程
-项目API文档
-写书
-记录">
+$ electron .没有作用，可能全局环境安装出现了一些问题">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/68731f4agw1f2z57jnc97j20nv0eaae5.jpg">
 
 
 
@@ -129,7 +119,7 @@
   };
 </script>
 
-  <title> 开始你的gitbook | Tracer Lee's blog </title>
+  <title> 开始你的electron | Tracer Lee's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +239,7 @@
             
             
               
-                开始你的gitbook
+                开始你的electron
               
             
           </h1>
@@ -261,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-03T02:40:50+08:00" content="2016-04-03">
-              2016-04-03
+            <time itemprop="dateCreated" datetime="2016-04-17T03:06:13+08:00" content="2016-04-17">
+              2016-04-17
             </time>
           </span>
 
@@ -289,34 +279,33 @@
       
 
       
-        <p>一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：</p>
-<blockquote>
+        <p>使用electron开发桌面应用遇到的问题和tips记录。</p>
 <ul>
-<li>编写教程</li>
-<li>项目API文档</li>
-<li>写书</li>
-<li>记录</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="出现的意外"><a href="#出现的意外" class="headerlink" title="出现的意外"></a>出现的意外</h3><p>发现不同node版本的安装过程出现了不一样的结果。</p>
-<p>0.12.*版本的安装gitbook会出现异常抛出。</p>
-<p>截至笔者写稿时间（2016年4月2日04:51:43）node版本为4.4.2，安装gitbook无异常。</p>
-<h2 id="将gitbook转移到移动设备上阅读"><a href="#将gitbook转移到移动设备上阅读" class="headerlink" title="将gitbook转移到移动设备上阅读"></a>将gitbook转移到移动设备上阅读</h2><p>今天（2016年4月2日18:20:21）突发奇想，能不能借助手机或者平板等移动设备随时离线随地阅读gitbook呢？答案是可以的，而且也不是很复杂，具体操作如下（以iPhone为例）：</p>
+<li><p><code>$ electron .</code>没有作用，可能全局环境安装出现了一些问题<a id="more"></a></p>
+</li>
+<li><p><img src="http://ww2.sinaimg.cn/large/68731f4agw1f2z57jnc97j20nv0eaae5.jpg" alt=""></p>
+<p>安装这个老是卡住</p>
+</li>
+<li><p>使用<code>electron-connect</code>和<code>gulp</code>来监听程序</p>
+<p>要在项目内安装<code>electron-connect</code>和<code>gulp</code>，否则会报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -gd gulp --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> electron = <span class="built_in">require</span>(<span class="string">'electron-connect'</span>).server.create();</span><br><span class="line"> </span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Start browser process </span></span><br><span class="line">  electron.start();</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Restart browser process </span></span><br><span class="line">  gulp.watch(<span class="string">'main.js'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  	<span class="built_in">console</span>.log(<span class="string">'restart'</span>);</span><br><span class="line">  	electron.restart();</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Reload renderer process </span></span><br><span class="line">  gulp.watch([<span class="string">'index.js'</span>, <span class="string">'index.html'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  	<span class="built_in">console</span>.log(<span class="string">'reload'</span>);</span><br><span class="line">  	electron.reload();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在electron应用内可以用<code>ctrl+r</code>刷新页面，在控制台里面可以用<code>f5</code></p>
+<p>不过<code>electron-connect</code>使用的<code>reload</code>方法不能刷新页面</p>
+</li>
+<li><p>应用打包</p>
 <ul>
-<li>进入你所感兴趣的gitbook主页，比如：<a href="https://www.gitbook.com/book/li-xinyang/frontend-notebook/details" target="_blank" rel="external">前端开发笔记本</a></li>
-<li>主页右侧其实提供了多种格式进行阅读<ul>
-<li>Read按钮，直接以网页形式打开gitbook，在国内网速堪忧</li>
-<li>PDF按钮，下载PDF格式gitbook到本地，适合各种设备</li>
-<li>ePub按钮，下载ePub格式gitbook到本地，适合iBooks等软件，阅读体验较佳</li>
-<li>Mobi按钮，下载Mobi格式gitbook到本地，适合Kindle</li>
-</ul>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install electron-packager -g</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>使用管理员cmd，否则可能打包不了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">electron-packager ./ --platform=win32 --arch=ia32</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<ul>
-<li>以ePub格式为例，点击ePub按钮，下载文件到本地，将文件传输到iPhone，用任何传输方式都可以（我用QQ传送）</li>
-<li>在iPhone上点击文件，使用其他应用打开，选择拷贝至iBooks，完成任务，可以愉快地到iBooks上享受阅读了</li>
-<li>BTW，iPhone下的iBooks软件阅读ePub格式的体验不错，渲染出的阅读页面十分舒服，唯一不足的是无法通过iBooks直接分享书籍，只能在其他途径分享文件</li>
+</li>
+<li><p>​研究一下怎么自定义一些选项（图标，asar，版本号，安装）</p>
+</li>
 </ul>
 
       
@@ -341,6 +330,8 @@
           
             <a href="/tags/工具/" rel="tag">#工具</a>
           
+            <a href="/tags/学习/" rel="tag">#学习</a>
+          
         </div>
       
 
@@ -348,16 +339,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/03/git和github的使用(Windows)/" rel="next" title="git和github的使用(Windows)">
-                <i class="fa fa-chevron-left"></i> git和github的使用(Windows)
+              <a href="/2016/04/09/sublime-text-常用插件/" rel="next" title="sublime text 常用插件">
+                <i class="fa fa-chevron-left"></i> sublime text 常用插件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/03/hexo-tips/" rel="prev" title="Hexo Tips">
-                Hexo Tips <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/19/在nodejs环境实现phantomjs的截图功能/" rel="prev" title="在nodejs环境实现phantomjs的截图功能">
+                在nodejs环境实现phantomjs的截图功能 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,7 +456,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的意外"><span class="nav-number">1.1.</span> <span class="nav-text">出现的意外</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将gitbook转移到移动设备上阅读"><span class="nav-number">2.</span> <span class="nav-text">将gitbook转移到移动设备上阅读</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

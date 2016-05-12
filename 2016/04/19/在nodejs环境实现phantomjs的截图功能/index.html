@@ -1,0 +1,586 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="以electron的nodejs上下文开发此截图功能
+关键代码
+123456789// web-sidevar ipc = require(&apos;ipc&apos;);var wrap = document.querySelector(&apos;.rap&apos;);document.querySelector(&apos;button&apos;).onclick = function () &amp;#123;  ipc.send(&apos;screensh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在nodejs环境实现phantomjs的截图功能">
+<meta property="og:url" content="http://tracer.xin/2016/04/19/在nodejs环境实现phantomjs的截图功能/index.html">
+<meta property="og:site_name" content="Tracer Lee's blog">
+<meta property="og:description" content="以electron的nodejs上下文开发此截图功能
+关键代码
+123456789// web-sidevar ipc = require(&apos;ipc&apos;);var wrap = document.querySelector(&apos;.rap&apos;);document.querySelector(&apos;button&apos;).onclick = function () &amp;#123;  ipc.send(&apos;screensh">
+<meta property="og:updated_time" content="2016-05-12T16:59:23.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在nodejs环境实现phantomjs的截图功能">
+<meta name="twitter:description" content="以electron的nodejs上下文开发此截图功能
+关键代码
+123456789// web-sidevar ipc = require(&apos;ipc&apos;);var wrap = document.querySelector(&apos;.rap&apos;);document.querySelector(&apos;button&apos;).onclick = function () &amp;#123;  ipc.send(&apos;screensh">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 在nodejs环境实现phantomjs的截图功能 | Tracer Lee's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Tracer Lee's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在nodejs环境实现phantomjs的截图功能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-19T03:13:45+08:00" content="2016-04-19">
+              2016-04-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以electron的nodejs上下文开发此截图功能</p>
+<p>关键代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// web-side</span></span><br><span class="line"><span class="keyword">var</span> ipc = <span class="built_in">require</span>(<span class="string">'ipc'</span>);</span><br><span class="line"><span class="keyword">var</span> wrap = <span class="built_in">document</span>.querySelector(<span class="string">'.rap'</span>);</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'button'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  ipc.send(<span class="string">'screenshot'</span>,&#123;</span><br><span class="line">    width: wrap.offsetWidth,</span><br><span class="line">    height: wrap.offsetHeight</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server-side</span></span><br><span class="line"><span class="keyword">let</span> phInstance,sitepage,url=<span class="string">"file:///C:/git/electron-quick-start/index.html"</span>,fname=<span class="string">"./index.jpg"</span>;</span><br><span class="line">ipc.on(<span class="string">'screenshot'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event,arg</span>) </span>&#123;</span><br><span class="line">  phantom.create()</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span>(<span class="params">instance</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">"1 - instance"</span>)</span><br><span class="line">          phInstance = instance;</span><br><span class="line">          <span class="keyword">return</span> instance.createPage();</span><br><span class="line">      &#125;)</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">"2 - page"</span>)</span><br><span class="line">          sitepage = page;</span><br><span class="line">          sitepage.property(<span class="string">'viewportSize'</span>, &#123; width: <span class="number">2100</span>, height: <span class="number">1200</span> &#125;);</span><br><span class="line">        <span class="keyword">return</span> sitepage.open(url);</span><br><span class="line">      &#125;)</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"3 - render"</span>)</span><br><span class="line">            sitepage.evaluate(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">const</span> wrap = <span class="built_in">document</span>.querySelector(<span class="string">'.android-wrap'</span>);</span><br><span class="line">              <span class="keyword">return</span> &#123;</span><br><span class="line">                left:wrap.offsetLeft,</span><br><span class="line">                top:wrap.offsetTop</span><br><span class="line">              &#125;; </span><br><span class="line">            &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">offset</span>) </span>&#123;</span><br><span class="line">              sitepage.property(<span class="string">'clipRect'</span>, &#123;top: offset.top, left: offset.left, width:arg.width, height:arg.height&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                sitepage.render(fname).then(<span class="function"><span class="keyword">function</span>(<span class="params">finished</span>) </span>&#123; </span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"\t\t\t---&gt; finished"</span>);</span><br><span class="line">                  sitepage.close();</span><br><span class="line">                  phInstance.exit();</span><br><span class="line">                  callback(&#123;msg: <span class="string">'ok'</span>&#125;)</span><br><span class="line">                  phantom.exit();</span><br><span class="line">                  <span class="keyword">return</span>;</span><br><span class="line">                &#125;);</span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用ipc作为客户端和服务端的通讯接口，不过还要改成客户端ipcMain的，旧接口将废弃</p>
+</li>
+<li><p><code>require(&#39;phantom&#39;)</code>引入node模块, github地址：<a href="https://github.com/amir20/phantomjs-node" target="_blank" rel="external">https://github.com/amir20/phantomjs-node</a></p>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">page.property(<span class="string">'plainText'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(content);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用<code>property</code>功能对<code>viewportSize</code>和<code>clipRect</code>进行设置，</p>
+</li>
+<li><p><code>page.render(fname)</code>对文件进行输出，<code>fname</code>为路径加名称</p>
+</li>
+<li><p><code>page.evaluate()</code>回调函数作用域可以访问客户端作用域（既可以访问<code>window</code>、<code>location</code>等对象）</p>
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://wizardforcel.gitbooks.io/electron-doc/content/api/ipc-main.html" target="_blank" rel="external">ipcMain</a></li>
+<li><a href="https://github.com/amir20/phantomjs-node/issues/384" target="_blank" rel="external">Access document when evaluating page #384</a></li>
+<li><a href="https://github.com/amir20/phantomjs-node#pageproperty" target="_blank" rel="external">page#property</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag">#学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/17/开始你的electron/" rel="next" title="开始你的electron">
+                <i class="fa fa-chevron-left"></i> 开始你的electron
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/07/《七天学会NodeJS》笔记/" rel="prev" title="《七天学会NodeJS》笔记">
+                《七天学会NodeJS》笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/private/img/Doraemon.jpg"
+               alt="Tracer Lee" />
+          <p class="site-author-name" itemprop="name">Tracer Lee</p>
+          <p class="site-description motion-element" itemprop="description">学习，输出</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tracer Lee</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
