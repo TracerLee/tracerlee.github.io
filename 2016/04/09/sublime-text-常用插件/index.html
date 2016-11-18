@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -31,32 +29,6 @@
   
   <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
 
 
@@ -97,7 +69,7 @@ SublimeLinter-jshintSublime">
 语法检测SublimeLinter只是一个管理工具
 SublimeLinter-jshintSublime">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/68731f4agw1f2r03o3xuvj20lg04m3z4.jpg">
-<meta property="og:updated_time" content="2016-05-12T16:58:52.181Z">
+<meta property="og:updated_time" content="2016-11-18T16:46:28.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sublime text 常用插件">
 <meta name="twitter:description" content="sublime text之所以强大其中一个原因就是强大的插件支持，具体如何安装Package Control请参考官网说明（https://packagecontrol.io/installation）。
@@ -114,7 +86,7 @@ SublimeLinter-jshintSublime">
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
       userId: 0,
       author: '博主'
@@ -289,7 +261,7 @@ SublimeLinter-jshintSublime">
 <p>依赖jshint，需要用node.js全局安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node i jshint -gd</span><br></pre></td></tr></table></figure>
 <p>参考配置:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "asi"      : true,</span><br><span class="line">  "browser"  : true,</span><br><span class="line">  "eqeqeq"   : false,</span><br><span class="line">  "-W041"    : false, // 这个可以忽略没有使用全等于的警告 </span><br><span class="line">  "eqnull"   : true,</span><br><span class="line">  "es3"      : true, // 默认是es3语法检测，若要开启es其他版本，删除此行并设置"esversion":6</span><br><span class="line">  "expr"     : true,</span><br><span class="line">  "jquery"   : true,</span><br><span class="line">  "latedef"  : true,</span><br><span class="line">  "laxbreak" : true,</span><br><span class="line">  "nonbsp"   : true,</span><br><span class="line">  "strict"   : true,</span><br><span class="line">  "undef"    : true,</span><br><span class="line">  "unused"   : true,</span><br><span class="line">  "devel"    : true, // 忽略console,alert警告</span><br><span class="line">  "global"   : &#123;     // 全局变量忽略列表</span><br><span class="line">    "seajs"   : true,</span><br><span class="line">    "define"  : true</span><br><span class="line">  &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "asi"      : true,  // 控制“缺少分号”的警告</span><br><span class="line">  "browser"  : true,  // 预定义全局变量</span><br><span class="line">  "eqeqeq"   : false, // 强制使用三等号</span><br><span class="line">  "-W041"    : false, // 这个可以忽略没有使用全等于的警告 </span><br><span class="line">  "eqnull"   : true,   </span><br><span class="line">  "es3"      : true,  // 默认是es3语法检测，若要开启es其他版本，删除此行并设置"esversion":6</span><br><span class="line">  "expr"     : true,</span><br><span class="line">  "jquery"   : true,  // 定于全局变量</span><br><span class="line">  "latedef"  : true,  // 禁止定义之前使用变量，忽略 function 函数声明</span><br><span class="line">  "laxbreak" : true,</span><br><span class="line">  "nonbsp"   : true,</span><br><span class="line">  "strict"   : true,  // 严格模式</span><br><span class="line">  "undef"    : true,  // 变量未定义</span><br><span class="line">  "unused"   : true,  // 变量未使用</span><br><span class="line">  "devel"    : true,  // 忽略console,alert警告</span><br><span class="line">  "globals"   : &#123;     // 全局变量忽略列表</span><br><span class="line">    "seajs"   : true,</span><br><span class="line">    "define"  : true</span><br><span class="line">  &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>jshint配置默认依赖父深度为3的文件夹下.jshintrc文件的配置。</p>
 <p>深度可在SublimeLinter用户设置中设置”rc_search_limit”: 3。</p>
 <p><strong>新建一个无文件名文件</strong>的方法，比如新建”.jshintrc”，就直接新建”.jshintrc.”，多了个”.”就可以了。</p>
@@ -409,7 +381,7 @@ SublimeLinter-jshintSublime">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -517,7 +489,7 @@ SublimeLinter-jshintSublime">
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
   
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
