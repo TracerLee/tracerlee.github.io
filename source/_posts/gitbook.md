@@ -2,6 +2,7 @@
 title: 开始你的gitbook
 date: 2016-04-03 02:40:50
 tags: 工具
+categories: 文档
 ---
 
 一个好的工具是产出的关键一步，偶然发现gitbook这样的平台和工具，尝试使用gitbook给自己的文字产出增添光彩。可能用在如下地方：

@@ -1,7 +1,8 @@
 ---
-title: sublime text 常用插件
+title: Sublime Text 常用插件
 date: 2016-04-09 03:16:34
-tags: [工具]
+tags: 工具
+categories: Sublime Text
 ---
 
 sublime text之所以强大其中一个原因就是强大的插件支持，具体如何安装Package Control请参考官网说明（https://packagecontrol.io/installation）。

@@ -2,6 +2,7 @@
 title: 《七天学会NodeJS》笔记
 date: 2016-05-07 23:35:26
 tags: 笔记
+categories: Node.js
 ---
 
 Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。

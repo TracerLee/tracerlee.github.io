@@ -1,7 +1,8 @@
 ---
-title: 优雅地使用sublime text
+title: 优雅地使用Sublime Text
 date: 2016-05-24 11:57:00
-tags: "工具"
+tags: 工具
+categories: Sublime Text
 ---
 
 ## 抛弃鼠标

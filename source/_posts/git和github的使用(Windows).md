@@ -2,6 +2,7 @@
 title: git和github的使用(Windows)
 date: 2016-04-03 02:33:09
 tags: 工具
+categories: 版本控制工具
 ---
 
 ## 安装 [git](https://git-scm.com/download/win)

@@ -2,6 +2,7 @@
 title: 在nodejs环境实现phantomjs的截图功能
 date: 2016-04-19 03:13:45
 tags: 学习
+categories: Node.js
 ---
 
 以electron的nodejs上下文开发此截图功能

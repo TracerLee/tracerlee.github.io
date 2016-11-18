@@ -1,7 +1,7 @@
 ---
 title: npm实用模块
 date: 2016-04-19 02:34:07
-tags:
+categories: Node.js
 ---
 
 ## nvm-windows: Node Version Manager(nvm) for Windows
