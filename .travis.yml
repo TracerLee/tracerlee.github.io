@@ -1,0 +1,22 @@
+language: node_js
+branches:
+  only:
+  - master
+before_install:
+- npm install -g hexo
+- npm install -g hexo-cli
+before_script:
+- git config --global user.name tracer
+- git config --global user.email tracerli@qq.com
+- sed -i'' "s~git@github.com:tracerlee/tracerlee-hexo.git~https://${REPO_TOKEN}:x-oauth-basic@github.com/tracerlee/tracerlee.github.io.git~"
+  _config.yml
+install:
+- npm install
+script:
+- hexo clean
+- hexo generate
+after_success:
+- hexo deploy
+env:
+  global:
+    secure: IRZLfbnThUfuKYXDsejgviMyg/KvHhwlUH1URnYh/p5ln17qF0OCFKmj2256lgeXl5AxUy+Vb2lnj2LefYiFDdOkslL1FvWCrgwFVxz6B7d/P3k4PC0F2jkA9aVLdAGlx2+r+BCtBE1rPm6IPH8j6ufgBWFjRNCH0UF6x31DhlrZ4Ti64KHM3iEYOf0QwdsGT3zRDgrvTmPBSUkHguwhzhami88FPzbVfiOJNTftIfvpda4/tY19/DfYj7IZAa6DVu5VN0WdbTB1V+NFpL6qdHfXhii0PhEBklSpDjckCoS1/PQEC9lNCqE8tTwvfbSGxwjeBaiA+LJPPdmL08f/GDyVlR8j+23OX4hgjhTZscOwUdZd0c3sHPvYK0pl4PSXdVfqbXI8nxlYlwaDulb6UBeOfqVLL8fJwTEjRehpmdp5Iw++v1gLEcT775ufRNBx4Xdpn9a9NsyCeOp1IAkAyM+tuRLu6bTUXK/3It3DRqGKT0atki4fn3Vm6iq/9Xf7ZzSIlRcNJCCbUG+coPPBWej0oNTe64v9H2WKsHw/jCncYtUMhMubJi6bPheKld9lCh0gun8DUZfoRMWHwpSM+RHaakrOY5MrvowZq4ouNbHGSqw+HF8bhj3ULZUkOlC8YU/dlSJ7j5Nte4fcmvpWbtaW++jGtRJiaF1oZqBo2bU=
