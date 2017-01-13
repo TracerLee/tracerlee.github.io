@@ -6,3 +6,12 @@ Hexo源码
 
 - [ ] 使用Travis CI自动部署Hexo
 - [ ] 添加评论功能
+- [ ] 统计
+
+## How to update
+
+```bash
+git pull origin source:source
+git push origin source
+```
+
