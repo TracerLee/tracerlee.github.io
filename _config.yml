@@ -72,7 +72,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/TracerLee/tracerlee.github.io.git
+  repo: git@github.com:TracerLee/tracerlee.github.io.git
   branch: master
 
 include:
