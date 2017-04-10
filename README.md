@@ -27,4 +27,4 @@ hexo new 'title'
 hexo g -d
 ```
 
-**参考：**http://tracer.xin/2016/04/03/hexo-tips/
+**参考：** http://tracer.xin/2016/04/03/hexo-tips/
