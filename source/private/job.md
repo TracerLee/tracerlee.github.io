@@ -184,3 +184,16 @@ T1C 或 T2A
 - 善于使用工具提升前端研发效率
 - 关注ES6、Webpack、Vue、React、PWA等流行框架或技术
 
+
+
+
+## 小程序框架开发
+
+- 精通HTML、CSS和JavaScript，具备框架设计能力
+- 有完整的大型前端项目经验
+- 精通JavaScript，深入了解过React、Vue等框架
+- 精通Node.js开发
+- 熟练掌握前端构建工具如grunt、gulp、webpack
+- 对Web安全有深入理解
+- 对chrome remote debug协议有深入了解者更佳
+- 对Native技术有涉足者更佳
