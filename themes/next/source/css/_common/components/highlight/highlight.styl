@@ -1,12 +1,13 @@
 // https://github.com/chriskempson/tomorrow-theme
 
 @require "theme"
+@require "diff"
 
 // Placeholder: $code-block
 $code-block {
   overflow: auto;
   margin: 20px 0;
-  padding: 15px;
+  padding: 0;
   font-size $code-font-size;
   color: $highlight-foreground;
   background: $highlight-background;
@@ -16,17 +17,17 @@ $code-block {
 pre, code { font-family: $code-font-family; }
 
 code {
+  word-wrap();
   padding: 2px 4px;
-  word-break: break-all;
   color: $code-foreground;
   background: $code-background;
   border-radius: $code-border-radius;
-  font-size $code-font-size;
+  font-size: $code-font-size;
 }
 
 pre {
   @extend $code-block;
-
+  padding: 10px;
   code {
     padding: 0;
     color: $highlight-foreground;
@@ -37,11 +38,14 @@ pre {
 
 .highlight {
   @extend $code-block;
+  // Read values from NexT config and set they as local variables to use as string variables (in any CSS section).
+  hexo-config('codeblock.border_radius') is a 'unit' ? (cbradius = unit(hexo-config('codeblock.border_radius'), px)) : (cbradius = 1px)
+  border-radius: cbradius;
 
   pre {
     border: none;
     margin: 0;
-    padding: 1px;
+    padding: 10px 0;
   }
 
   table {
@@ -61,6 +65,10 @@ pre {
     color: $highlight-foreground;
     line-height: 1em;
     margin-bottom: 1em;
+    margin: 0em;
+    padding: 0.5em;
+    background: $code-background;
+    border-bottom: 1px solid #e9e9e9;
 
     a {
       float: right;
@@ -71,20 +79,41 @@ pre {
   }
 
   .gutter pre {
-    color: $grey-dim;
-    text-align: right;
-    padding-right: 20px;
+    padding-left: 10px
+    padding-right: 10px
+    color: $highlight-gutter.color
+    text-align: right
+    background-color: $highlight-gutter.bg-color
+  }
+
+  .code pre {
+    width: 100%
+    padding-left: 10px
+    padding-right: 10px
+    background-color: $highlight-background
   }
 
   .line { height: 20px; }
 }
 
 
+.gutter {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .gist table {
   width: auto;
 
   td { border: none; }
 }
+
+// For diff highlight
+pre .deletion { background: $highlight-deletion; }
+pre .addition { background: $highlight-addition; }
+pre .meta     { color: $highlight-purple; }
 
 pre {
 
@@ -93,6 +122,7 @@ pre {
   .variable
   .attribute
   .tag
+  .name
   .regexp
   .ruby .constant
   .xml .tag .title
@@ -108,6 +138,7 @@ pre {
   .number
   .preprocessor
   .built_in
+  .builtin-name
   .literal
   .params
   .constant
@@ -118,13 +149,13 @@ pre {
   .ruby .class .title
   .css .rules .attribute
   .string
+  .symbol
   .value
   .inheritance
   .header
   .ruby .symbol
   .xml .cdata
   .special
-  .number
   .formula {
     color: $highlight-green;
   }

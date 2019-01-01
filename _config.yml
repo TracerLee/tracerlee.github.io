@@ -7,9 +7,9 @@ title: Tracer Lee's blog
 subtitle: 
 description: 学习，输出
 author: Tracer Lee
-language: zh-Hans
+language: zh-CN
 timezone:
-avatar: /private/img/Doraemon.jpg
+# avatar: /private/img/Doraemon.jpg
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -77,3 +77,11 @@ deploy:
 
 include:
 - .nojekyll
+
+# Symbols count and time to read of articles.
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+

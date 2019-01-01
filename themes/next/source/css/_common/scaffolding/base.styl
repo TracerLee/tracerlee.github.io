@@ -1,4 +1,3 @@
-
 ::selection {
   background: $selection-bg;
   color: $selection-color;
@@ -25,35 +24,45 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headings;
 }
 
-h2, h3, h4, h5, h6 { margin: 20px 0 15px; }
+h1, h2, h3, h4, h5, h6 { margin: 20px 0 15px; }
 
 for headline in (1..6) {
   h{headline} {
     font-size: $font-size-headings-base - $font-size-headings-step * headline;
+    code {
+      font-size: $font-size-headings-base - $font-size-headings-step * headline;
+    }
   }
 
   +mobile() {
     h{headline} {
       font-size: $font-size-headings-base - $font-size-headings-step * headline - 4px;
+      code {
+        font-size: $font-size-headings-base - $font-size-headings-step * headline - 4px;
+      }
     }
   }
 }
 
-p { margin: 0 0 10px 0; }
+p { margin: 0 0 20px 0; }
 
-a {
+a, span.exturl {
+  word-wrap();
+  // Remove the gray background color from active links in IE 10.
+  background-color: transparent;
   color: $link-color;
   text-decoration: none;
-  border-bottom: 1px solid $grey-dark;
-  word-wrap: break-word;
+  outline: none;
+  border-bottom: 1px solid $link-decoration-color;
 
   &:hover {
     color: $link-hover-color;
     border-bottom-color: $link-decoration-hover-color;
   }
-}
 
-ul { list-style: none; }
+  // For spanned external links.
+  cursor: pointer;
+}
 
 blockquote {
   margin: 0;
@@ -100,4 +109,13 @@ dd {
   padding: 0;
 }
 
-
+kbd {
+  border: 1px solid $grey-light;
+  border-radius: 0.2em;
+  box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.1);
+  background-color: #f9f9f9;
+  font-family: inherit;
+  background-image: -webkit-linear-gradient(top, #eee, white, #eee);
+  padding: 0.1em 0.3em;
+  white-space: nowrap;
+}

@@ -1,7 +1,6 @@
 .use-motion .sidebar .motion-element { opacity: 1; }
 
 .sidebar {
-  display: none;
   right: auto;
   bottom: auto;
 
@@ -12,19 +11,28 @@
 
 
 .sidebar-inner {
+//padding: 20px 10px 0;
   box-sizing: border-box;
-  width: 240px;
+  width: $sidebar-desktop;
   color: $text-color;
   background: white;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  if (hexo-config('motion.enable') and hexo-config('motion.transition.sidebar')) { opacity: 0; }
 
   &.affix {
     position: fixed;
-    top: 0;
+    top: $sidebar-offset;
   }
+
+  &.affix-bottom {
+    position: absolute;
+  }
+
 }
 
 .site-overview {
-  margin: 0 2px;
+  //margin: 0 2px;
   text-align: left;
 }
 
@@ -32,15 +40,20 @@
   clearfix();
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar span.exturl {
   color: $black-light;
 
   &:hover { color: $black-deep; }
 }
 
+.site-state-item {
+  padding: 0 10px;
+}
+
 .links-of-author-item {
-  a:before { display: none; }
-  a {
+  a:before, span.exturl:before { display: none; }
+  a, span.exturl {
     border-bottom: none;
     text-decoration: underline;
   }
@@ -66,12 +79,19 @@
 }
 
 .links-of-author {
-  clearfix();
+  //clearfix();
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  span.exturl {
+    font-size: 13px;
+  }
 }
 .links-of-author-item {
   sidebar-inline-links-item();
 
-  a {
+  a, span.exturl {
     display: block;
     text-decoration: none;
 
@@ -90,6 +110,7 @@
 
 
 .links-of-blogroll {
+  text-align: center;
   margin-top: 20px;
   padding: 3px 0 0;
   border-top: 1px dotted $grey-light;
@@ -101,5 +122,7 @@
 
   .links-of-blogroll-item {
     sidebar-inline-links-item();
+    display: inline-block;
+    if !hexo-config('social_icons.icons_only') { width: unset; }
   }
 }

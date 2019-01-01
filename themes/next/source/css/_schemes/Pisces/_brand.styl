@@ -1,3 +1,7 @@
+.site-brand-wrapper {
+  position: relative;
+}
+
 .site-meta {
   padding: 20px 0;
   color: white;
@@ -12,13 +16,29 @@
 }
 
 .brand {
-  display: block;
   padding: 0;
   background: none;
 
-  &:hover { color: white; }
+  &:hover {
+   color: white;
+  }
 }
 
-.site-subtitle { margin: 0; }
+.site-subtitle {
+  margin: 10px 10px 0;
+  font-weight: initial;
+}
 
-.site-search form { display: none; }
+.custom-logo-image {
+  margin-top: 20px;
+  +tablet() {
+    display: none;
+  }
+  +mobile() {
+    display: none;
+  }
+}
+
+.site-search form {
+  display: none;
+}
