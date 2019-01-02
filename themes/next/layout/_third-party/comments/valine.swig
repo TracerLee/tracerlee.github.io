@@ -1,5 +1,5 @@
 {% if theme.valine.enable and theme.valine.appid and theme.valine.appkey %}
-  {% set leancloud_uri = '//cdn1.lncld.net/static/js/3.11.1/av-min.js' %}
+  {% set leancloud_uri = '//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js' %}
   {% set valine_uri = '/Valine.min.js' %}
   {% if theme.vendors.leancloud %}
     {% set leancloud_uri = theme.vendors.leancloud %}
