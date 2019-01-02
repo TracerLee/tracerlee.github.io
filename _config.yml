@@ -30,6 +30,7 @@ skip_render:
     - README.md
     - googlef45bc179c94fd8df.html
     - lib/Valine.min.js
+    - .gitignore
 
 # Writing
 new_post_name: :title.md # File name of new posts
