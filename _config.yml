@@ -29,7 +29,7 @@ i18n_dir: :lang
 skip_render: 
     - README.md
     - googlef45bc179c94fd8df.html
-    - lib/Valine.min.js
+    - Valine.min.js
     - .gitignore
 
 # Writing
