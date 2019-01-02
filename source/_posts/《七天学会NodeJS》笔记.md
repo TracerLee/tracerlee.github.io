@@ -19,7 +19,7 @@ Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的
 
 ## 一、Node.js基础
 
-#### exports
+#### exports 对象
 
 `exports`对象是当前模块的导出对象，用于导出模块公有方法和属性。别的模块通过`require`函数使用当前模块时得到的就是当前模块的`exports`对象。以下例子中导出了一个公有方法。
 
