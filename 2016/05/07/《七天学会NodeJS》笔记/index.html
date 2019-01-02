@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。
+
+Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《七天学会NodeJS》笔记">
+<meta property="og:url" content="http://tracer.xin/2016/05/07/《七天学会NodeJS》笔记/index.html">
+<meta property="og:site_name" content="Tracer Lee's blog">
+<meta property="og:description" content="Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。
+
+Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes">
+<meta property="og:updated_time" content="2019-01-02T12:22:43.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《七天学会NodeJS》笔记">
+<meta name="twitter:description" content="Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。
+
+Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes">
+
+
+
+
+
+
+  <link rel="canonical" href="http://tracer.xin/2016/05/07/《七天学会NodeJS》笔记/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《七天学会NodeJS》笔记 | Tracer Lee's blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8768b275e421754abc286e1d7e33b441";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tracer Lee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br/>公益 404</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tracer.xin/2016/05/07/《七天学会NodeJS》笔记/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tracer Lee"/>
+      <meta itemprop="description" content="学习，输出"/>
+      <meta itemprop="image" content="/private/img/Doraemon.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tracer Lee's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《七天学会NodeJS》笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-05-07 23:35:26" itemprop="dateCreated datePublished" datetime="2016-05-07T23:35:26+08:00">2016-05-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-02 20:22:43" itemprop="dateModified" datetime="2019-01-02T20:22:43+08:00">2019-01-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/07/《七天学会NodeJS》笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2016/05/07/《七天学会NodeJS》笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/05/07/《七天学会NodeJS》笔记/" class="leancloud_visitors" data-flag-title="《七天学会NodeJS》笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">9.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">8 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Node.js是一个运行javascript的环境，NodeJS的作者创造NodeJS的目的是为了实现高性能Web服务器。</p>
+<blockquote>
+<p>Node.js® is a JavaScript runtime built on <a href="https://developers.google.com/v8/" target="_blank" rel="external">Chrome’s V8 JavaScript engine</a>. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js’ package ecosystem, <a href="https://www.npmjs.com/" target="_blank" rel="external">npm</a>, is the largest ecosystem of open source libraries in the world.</p>
+<p>—— <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a></p>
+</blockquote>
+<p>这篇文章主要摘录一些个人认为的重点，希望加深对Node.js的熟悉。</p>
+<h2 id="一、Node-js基础"><a href="#一、Node-js基础" class="headerlink" title="一、Node.js基础"></a>一、Node.js基础</h2><h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><p><code>exports</code>对象是当前模块的导出对象，用于导出模块公有方法和属性。别的模块通过<code>require</code>函数使用当前模块时得到的就是当前模块的<code>exports</code>对象。以下例子中导出了一个公有方法。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exports.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Hello World!'</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>exports</code>默认是<code>{}</code>，是<code>module.exports</code>的一个引用。</p>
+</blockquote>
+<h4 id="模块初始化"><a href="#模块初始化" class="headerlink" title="模块初始化"></a>模块初始化</h4><p>一个模块中的JS代码仅在模块<u><strong>第一次被使用时执行一次</strong></u>，并在执行过程中初始化模块的导出对象。之后，<u><strong>缓存起来</strong></u>的导出对象被重复利用。</p>
+<h4 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h4><p>通过命令行参数传递给NodeJS以启动程序的模块被称为主模块。主模块负责调度组成整个程序的其它模块完成工作。例如通过以下命令启动程序时，<code>main.js</code>就是主模块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node main.js</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明多次<code>require</code>不会导致执行多次模块内的程序内容。</p>
+</blockquote>
+<ul>
+<li>NodeJS是一个JS脚本解析器，任何操作系统下安装NodeJS本质上做的事情都是把NodeJS执行程序复制到一个目录，然后保证这个目录在系统PATH环境变量下，以便终端下可以使用<code>node</code>命令。</li>
+<li>终端下直接输入<code>node</code>命令可进入命令交互模式，很适合用来测试一些JS代码片段，比如正则表达式。</li>
+<li>NodeJS使用<a href="http://wiki.commonjs.org/" target="_blank" rel="external">CMD</a>模块系统，主模块作为程序入口点，所有模块在执行过程中只初始化一次。</li>
+<li>除非JS模块不能满足需求，否则不要轻易使用二进制模块，否则你的用户会叫苦连天。</li>
+</ul>
+<blockquote>
+<p>Node.js使用CMD规范，Sea.js也是遵循CMD规范。</p>
+</blockquote>
+<h2 id="二、代码的组织和部署"><a href="#二、代码的组织和部署" class="headerlink" title="二、代码的组织和部署"></a>二、代码的组织和部署</h2><h3 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h3><ol>
+<li>内置模块</li>
+<li>node_modules目录</li>
+<li>NODE_PATH环境变量</li>
+</ol>
+<h3 id="包（package）"><a href="#包（package）" class="headerlink" title="包（package）"></a>包（package）</h3><p>当模块的文件名是<code>index.js</code>，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat'</span>);</div><div class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat/index'</span>);</div></pre></td></tr></table></figure>
+<p>这样处理后，就只需要把包目录路径传递给<code>require</code>函数，感觉上整个目录被当作单个模块使用，更有整体感。</p>
+<blockquote>
+<p>所以就是<code>require</code>一个文件夹就等同于<code>require</code>里面的<code>index.js</code>模块，这个很方便。</p>
+</blockquote>
+<h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span>: <span class="string">"node-echo"</span>,</div><div class="line"><span class="attr">"main"</span>: <span class="string">"./lib/echo.js"</span>,</div><div class="line"><span class="attr">"dependencies"</span>: &#123;</div><div class="line"><span class="attr">"argv"</span>: <span class="string">"0.0.2"</span></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>name</code>是包名称，<code>main</code>是入口模块（主模块），<code>dependencies</code>是依赖模块。</p>
+</blockquote>
+<h4 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h4><p>语义版本号分为<code>X.Y.Z</code>三位，分别代表主版本号、次版本号和补丁版本号。当代码变更时，版本号按以下原则更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">如果只是修复bug，需要更新Z位。</div><div class="line">如果是新增了功能，但是向下兼容，需要更新Y位。</div><div class="line">如果有大变动，向下不兼容，需要更新X位。</div></pre></td></tr></table></figure>
+<h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><ul>
+<li>使用<code>npm help</code>可查看某条命令的详细帮助，例如<code>npm help install</code>。</li>
+<li>在<code>package.json</code>所在目录下使用<code>npm install . -g</code>可先在本地安装当前命令行程序，可用于发布前的本地测试。</li>
+<li>使用<code>npm update</code>可以把当前目录下<code>node_modules</code>子目录里边的对应模块更新至最新版本。</li>
+<li>使用<code>npm update -g</code>可以把全局安装的对应命令行程序更新至最新版。</li>
+<li>使用<code>npm cache clear</code>可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。</li>
+</ul>
+<h4 id="使用NodeJS编写代码前需要做的准备工作"><a href="#使用NodeJS编写代码前需要做的准备工作" class="headerlink" title="使用NodeJS编写代码前需要做的准备工作"></a>使用NodeJS编写代码前需要做的准备工作</h4><ul>
+<li>编写代码前先规划好目录结构，才能做到有条不紊。</li>
+<li>稍大些的程序可以将代码拆分为多个模块管理，更大些的程序可以使用包来组织模块。</li>
+<li>合理使用<code>node_modules</code>和<code>NODE_PATH</code>来解耦包的使用方式和物理路径。</li>
+</ul>
+<h2 id="三、文件操作"><a href="#三、文件操作" class="headerlink" title="三、文件操作"></a>三、文件操作</h2><h4 id="小文件拷贝"><a href="#小文件拷贝" class="headerlink" title="小文件拷贝"></a>小文件拷贝</h4><p><em>代码片段</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fs.writeFileSync(dst, fs.readFileSync(src)); <span class="comment">// dst:目标路径,src:源路径</span></div></pre></td></tr></table></figure>
+<h4 id="大文件拷贝"><a href="#大文件拷贝" class="headerlink" title="大文件拷贝"></a>大文件拷贝</h4><p><em>代码片段</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fs.createReadStream(src).pipe(fs.createWriteStream(dst));</div></pre></td></tr></table></figure>
+<p>以上程序使用<code>fs.createReadStream</code>创建了一个源文件的只读数据流，并使用<code>fs.createWriteStream</code>创建了一个目标文件的只写数据流，并且用<code>pipe</code>方法把两个数据流连接了起来。连接起来后发生的事情，说得抽象点的话，水顺着水管从一个桶流到了另一个桶。</p>
+<h4 id="Buffer（数据块）"><a href="#Buffer（数据块）" class="headerlink" title="Buffer（数据块）"></a><a href="http://nodejs.org/api/buffer.html" target="_blank" rel="external">Buffer（数据块）</a></h4><h4 id="Stream（数据流）"><a href="#Stream（数据流）" class="headerlink" title="Stream（数据流）"></a><a href="http://nodejs.org/api/stream.html" target="_blank" rel="external">Stream（数据流）</a></h4><h4 id="File-System（文件系统）"><a href="#File-System（文件系统）" class="headerlink" title="File System（文件系统）"></a><a href="http://nodejs.org/api/fs.html" target="_blank" rel="external">File System（文件系统）</a></h4><p><code>fs</code>模块的所有异步API都有对应的同步版本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 以文件内容读取为例</span></div><div class="line"><span class="comment">// 异步写法</span></div><div class="line">fs.readFile(pathname, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="comment">// Deal with error.</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// Deal with data.</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 同步写法</span></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">var</span> data = fs.readFileSync(pathname);</div><div class="line">    <span class="comment">// Deal with data.</span></div><div class="line">&#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">    <span class="comment">// Deal with error.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Path（路径）"><a href="#Path（路径）" class="headerlink" title="Path（路径）"></a><a href="http://nodejs.org/api/path.html" target="_blank" rel="external">Path（路径）</a></h4><h4 id="遍历目录"><a href="#遍历目录" class="headerlink" title="遍历目录"></a>遍历目录</h4><p>目录是一个树状结构，在遍历时一般使用<strong>深度优先+先序遍历算法</strong>。使用这种遍历方式时，下边这棵树的遍历顺序是<code>A &gt; B &gt; D &gt; E &gt; C &gt; F</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    A</div><div class="line">   / \</div><div class="line">  B   C</div><div class="line"> / \   \</div><div class="line">D   E   F</div></pre></td></tr></table></figure>
+<h4 id="同步遍历、异步遍历"><a href="#同步遍历、异步遍历" class="headerlink" title="同步遍历、异步遍历"></a>同步遍历、异步遍历</h4><p><strong>思路：</strong>某个目录作为遍历的起点。遇到一个子目录时，就先接着遍历子目录。遇到一个文件时，就把文件的绝对路径传给回调函数。回调函数拿到文件路径后，就可以做各种判断和处理。</p>
+<blockquote>
+<p>遍历的思路值得去好好琢磨。</p>
+</blockquote>
+<h4 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h4><p>常用的文本编码有<code>UTF8</code>和<code>GBK</code>，<code>UTF8</code>文件还可能带有BOM。在读取不同编码的文本文件时，需要将文件内容转换为JS使用的<code>UTF8</code>编码字符串后才能正常处理。</p>
+<h5 id="BOM移除"><a href="#BOM移除" class="headerlink" title="BOM移除"></a>BOM移除</h5><p>在不同的Unicode编码下，BOM字符对应的二进制字节如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    Bytes      Encoding</div><div class="line">----------------------------</div><div class="line">    FE FF       UTF16BE</div><div class="line">    FF FE       UTF16LE</div><div class="line">    EF BB BF    UTF8</div></pre></td></tr></table></figure>
+<p>移除UTF8 BOM</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readText</span>(<span class="params">pathname</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> bin = fs.readFileSync(pathname);</div><div class="line">    <span class="keyword">if</span> (bin[<span class="number">0</span>] === <span class="number">0xEF</span> &amp;&amp; bin[<span class="number">1</span>] === <span class="number">0xBB</span> &amp;&amp; bin[<span class="number">2</span>] === <span class="number">0xBF</span>) &#123;</div><div class="line">        bin = bin.slice(<span class="number">3</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> bin.toString(<span class="string">'utf-8'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="GBK转UTF8（借助iconv-lite）"><a href="#GBK转UTF8（借助iconv-lite）" class="headerlink" title="GBK转UTF8（借助iconv-lite）"></a>GBK转UTF8（借助<code>iconv-lite</code>）</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readGBKText</span>(<span class="params">pathname</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> bin = fs.readFileSync(pathname);</div><div class="line">    <span class="keyword">return</span> iconv.decode(bin, <span class="string">'gbk'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="单字节编码"><a href="#单字节编码" class="headerlink" title="单字节编码"></a>单字节编码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">replace</span>(<span class="params">pathname</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> str = fs.readFileSync(pathname, <span class="string">'binary'</span>);</div><div class="line">    str = str.replace(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</div><div class="line">    fs.writeFileSync(pathname, str, <span class="string">'binary'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>学好文件操作</li>
+<li>掌握目录遍历和文件编码</li>
+</ul>
+<h2 id="四、网络操作"><a href="#四、网络操作" class="headerlink" title="四、网络操作"></a>四、网络操作</h2><h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a><a href="http://nodejs.org/api/http.html" target="_blank" rel="external">HTTP</a></h4><p><code>http</code>模块提供两种使用方式：</p>
+<ul>
+<li>作为服务端使用时，创建一个HTTP服务器，监听HTTP客户端请求并返回响应。</li>
+<li>作为客户端使用时，发起一个HTTP客户端请求，获取服务端响应。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建HTTP服务器</span></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> body = [];</div><div class="line">    <span class="built_in">console</span>.log(request.method);</div><div class="line">    <span class="built_in">console</span>.log(request.headers);</div><div class="line">    </div><div class="line">	<span class="comment">// chunk传输</span></div><div class="line">    request.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</div><div class="line">        body.push(chunk);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    request.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        body = Buffer.concat(body);</div><div class="line">        <span class="built_in">console</span>.log(body.toString());</div><div class="line">    &#125;);</div><div class="line">&#125;).listen(<span class="number">80</span>);</div><div class="line"></div><div class="line">------------------------------------</div><div class="line">POST</div><div class="line">&#123; <span class="string">'user-agent'</span>: <span class="string">'curl/7.26.0'</span>,</div><div class="line">  <span class="attr">host</span>: <span class="string">'localhost'</span>,</div><div class="line">  <span class="attr">accept</span>: <span class="string">'*/*'</span>,</div><div class="line">  <span class="string">'content-length'</span>: <span class="string">'11'</span>,</div><div class="line">  <span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded'</span> &#125;</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>request</code>和<code>response</code>对象除了用于读写头数据外，都可以当作数据流来操作。</p>
+</blockquote>
+<h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a><a href="http://nodejs.org/api/https.html" target="_blank" rel="external">HTTPS</a></h4><h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a><a href="http://nodejs.org/api/url.html" target="_blank" rel="external">URL</a></h4><h5 id="URL的各组成部分"><a href="#URL的各组成部分" class="headerlink" title="URL的各组成部分"></a>URL的各组成部分</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">                           href</div><div class="line"> -----------------------------------------------------------------</div><div class="line">                            host              path</div><div class="line">                      --------------- ----------------------------</div><div class="line"> http: // user:pass @ host.com : 8080 /p/a/t/h ?query=string #hash</div><div class="line"> -----    ---------   --------   ---- -------- ------------- -----</div><div class="line">protocol     auth     hostname   port pathname     search     hash</div><div class="line">                                                ------------</div><div class="line">                                                   query</div></pre></td></tr></table></figure>
+<blockquote>
+<p>常用方法 <code>parse</code> <code>format</code> <code>resolve</code> 等</p>
+</blockquote>
+<h4 id="Query-String"><a href="#Query-String" class="headerlink" title="Query String"></a><a href="http://nodejs.org/api/querystring.html" target="_blank" rel="external">Query String</a></h4><blockquote>
+<p><code>querystring.parse(&#39;foo=bar&amp;baz=qux&#39;)</code></p>
+<p><code>querystring.stringify({ foo: &#39;bar&#39;, baz: [&#39;qux&#39;, &#39;quux&#39;], corge: &#39;&#39; })</code></p>
+</blockquote>
+<h4 id="Zlib"><a href="#Zlib" class="headerlink" title="Zlib"></a><a href="http://nodejs.org/api/zlib.html" target="_blank" rel="external">Zlib</a></h4><p><code>zlib</code>模块提供了数据压缩和解压的功能。</p>
+<h4 id="Net"><a href="#Net" class="headerlink" title="Net"></a><a href="http://nodejs.org/api/net.html" target="_blank" rel="external">Net</a></h4><p><code>net</code>模块可用于创建Socket服务器或Socket客户端。</p>
+<blockquote>
+<p>通过<code>net</code>模块的Socket服务器与客户端可对HTTP协议做底层操作。</p>
+</blockquote>
+<h2 id="五、进程管理"><a href="#五、进程管理" class="headerlink" title="五、进程管理"></a>五、进程管理</h2><h4 id="Process"><a href="#Process" class="headerlink" title="Process"></a><a href="http://nodejs.org/api/process.html" target="_blank" rel="external">Process</a></h4><p><code>process</code>不是内置模块，而是一个全局对象。</p>
+<blockquote>
+<p>应用：获取命令行参数、退出程序、控制输入输出、进程间通讯</p>
+</blockquote>
+<h4 id="Child-Process"><a href="#Child-Process" class="headerlink" title="Child Process"></a><a href="http://nodejs.org/api/child_process.html" target="_blank" rel="external">Child Process</a></h4><p>使用<code>child_process</code>模块可以创建和控制子进程。该模块提供的API中最核心的是<code>.spawn</code>，其余API都是针对特定使用场景对它的进一步封装，算是一种语法糖。</p>
+<h4 id="Cluster"><a href="#Cluster" class="headerlink" title="Cluster"></a><a href="http://nodejs.org/api/cluster.html" target="_blank" rel="external">Cluster</a></h4><p><code>cluster</code>模块是对<code>child_process</code>模块的进一步封装，专用于解决单进程NodeJS Web服务器无法充分利用多核CPU的问题。使用该模块可以简化多进程服务器程序的开发，让每个核上运行一个工作进程，并统一通过主进程监听端口和分发请求。</p>
+<h2 id="六、异步编程"><a href="#六、异步编程" class="headerlink" title="六、异步编程"></a>六、异步编程</h2><p>我们仍然回到JS是单线程运行的这个事实上，这决定了JS在执行完一段代码之前无法执行包括回调函数在内的别的代码。也就是说，即使平行线程完成工作了，通知JS主线程执行回调函数了，<strong>回调函数也要等到JS主线程空闲时才能开始执行</strong>。以下就是这么一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">heavyCompute</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> count = <span class="number">0</span>,</div><div class="line">        i, j;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = n; i &gt; <span class="number">0</span>; --i) &#123;</div><div class="line">        <span class="keyword">for</span> (j = n; j &gt; <span class="number">0</span>; --j) &#123;</div><div class="line">            count += <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>() - t);</div><div class="line">&#125;, <span class="number">1000</span>);</div><div class="line"></div><div class="line">heavyCompute(<span class="number">50000</span>);</div><div class="line"></div><div class="line">-- Console ------------------------------</div><div class="line"><span class="number">8520</span></div></pre></td></tr></table></figure>
+<p>可以看到，本来应该在1秒后被调用的回调函数因为JS主线程忙于运行其它代码，实际执行时间被大幅延迟。</p>
+<h4 id="代码设计模式"><a href="#代码设计模式" class="headerlink" title="代码设计模式"></a>代码设计模式</h4><h5 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h5><p>同步</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> len = arr.length,</div><div class="line">    i = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (; i &lt; len; ++i) &#123;</div><div class="line">    arr[i] = sync(arr[i]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// All array items have processed.</span></div></pre></td></tr></table></figure>
+<p>异步（数组成员串行处理）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">i, len, callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i &lt; len) &#123;</div><div class="line">        <span class="keyword">async</span>(arr[i], <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">            arr[i] = value;</div><div class="line">            next(i + <span class="number">1</span>, len, callback);</div><div class="line">        &#125;);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        callback();</div><div class="line">    &#125;</div><div class="line">&#125;(<span class="number">0</span>, arr.length, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// All array items have processed.</span></div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<p>异步（数组成员并行处理）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i, len, count, callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span> (; i &lt; len; ++i) &#123;</div><div class="line">        (<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</div><div class="line">            <span class="keyword">async</span>(arr[i], <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">                arr[i] = value;</div><div class="line">                <span class="keyword">if</span> (++count === len) &#123;</div><div class="line">                    callback();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;(i));</div><div class="line">    &#125;</div><div class="line">&#125;(<span class="number">0</span>, arr.length, <span class="number">0</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// All array items have processed.</span></div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<h5 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">async</span>(<span class="params">fn, callback</span>) </span>&#123;</div><div class="line">    <span class="comment">// Code execution path breaks here.</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)　</span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            callback(<span class="literal">null</span>, fn());</div><div class="line">        &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">            callback(err);</div><div class="line">        &#125;</div><div class="line">    &#125;, <span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span>(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Error: %s'</span>, err.message);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// Do something.</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">-- Console ------------------------------</div><div class="line"><span class="built_in">Error</span>: object is not a <span class="function"><span class="keyword">function</span></span></div></pre></td></tr></table></figure>
+<p>在NodeJS中，几乎所有异步API都按照以上方式设计，回调函数中第一个参数都是<code>err</code>。因此我们在编写自己的异步函数时，也可以按照这种方式来处理异常，与NodeJS的设计风格保持一致。</p>
+<h4 id="域（Domain）"><a href="#域（Domain）" class="headerlink" title="域（Domain）"></a><a href="http://nodejs.org/api/domain.html" target="_blank" rel="external">域（Domain）</a></h4><p>Node.js通过<code>process</code>对象提供了捕获全局异常的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">process.on(<span class="string">'uncaughtException'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Error: %s'</span>, err.message);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</div><div class="line">    fn();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">-- Console ------------------------------</div><div class="line"><span class="built_in">Error</span>: <span class="literal">undefined</span> is not a <span class="function"><span class="keyword">function</span></span></div></pre></td></tr></table></figure>
+<p>使用<code>domain</code>模块创建一个子域（JS子运行环境）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">async</span>(<span class="params">request, callback</span>) </span>&#123;</div><div class="line">    <span class="comment">// Do something.</span></div><div class="line">    asyncA(request, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="comment">// Do something</span></div><div class="line">        asyncB(request, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">            <span class="comment">// Do something</span></div><div class="line">            asyncC(request, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">                <span class="comment">// Do something</span></div><div class="line">                callback(data);</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> d = domain.create();</div><div class="line"></div><div class="line">    d.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        response.writeHead(<span class="number">500</span>);</div><div class="line">        response.end();</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    d.run(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">async</span>(request, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">            response.writeHead(<span class="number">200</span>);</div><div class="line">            response.end(data);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>子域可以独立处理抛出的异常，通过<code>.run</code>方法进入子域中运行代码</p>
+</blockquote>
+<p>按照官方文档的说法，发生异常后的程序处于一个不确定的运行状态，如果不立即退出的话，程序可能会发生严重内存泄漏，也可能表现得很奇怪。</p>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>不掌握异步编程就不算学会NodeJS。</li>
+<li>异步编程依托于回调来实现，而使用回调不一定就是异步编程。</li>
+<li>异步编程下的函数间数据传递、数组遍历和异常处理与同步编程有很大差别。</li>
+<li>使用<code>domain</code>模块简化异步代码的异常处理，并小心陷阱</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://nqdeng.github.io/7-days-nodejs/" target="_blank" rel="external">七天学会NodeJS</a></li>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a></li>
+<li><a href="https://papahot.gitbooks.io/7-days-nodejs/content/" target="_blank" rel="external">7-days-nodejs</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/19/在nodejs环境实现phantomjs的截图功能/" rel="next" title="在nodejs环境实现phantomjs的截图功能">
+                <i class="fa fa-chevron-left"></i> 在nodejs环境实现phantomjs的截图功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/24/优雅地使用sublime-text/" rel="prev" title="优雅地使用Sublime Text">
+                优雅地使用Sublime Text <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/private/img/Doraemon.jpg"
+                alt="Tracer Lee"/>
+            
+              <p class="site-author-name" itemprop="name">Tracer Lee</p>
+              <p class="site-description motion-element" itemprop="description">学习，输出</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Node-js基础"><span class="nav-number">1.</span> <span class="nav-text">一、Node.js基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exports"><span class="nav-number">1.0.1.</span> <span class="nav-text">exports</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块初始化"><span class="nav-number">1.0.2.</span> <span class="nav-text">模块初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主模块"><span class="nav-number">1.0.3.</span> <span class="nav-text">主模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、代码的组织和部署"><span class="nav-number">2.</span> <span class="nav-text">二、代码的组织和部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块路径解析规则"><span class="nav-number">2.1.</span> <span class="nav-text">模块路径解析规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包（package）"><span class="nav-number">2.2.</span> <span class="nav-text">包（package）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json"><span class="nav-number">2.2.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#版本号"><span class="nav-number">2.2.2.</span> <span class="nav-text">版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NPM"><span class="nav-number">2.2.3.</span> <span class="nav-text">NPM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用NodeJS编写代码前需要做的准备工作"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用NodeJS编写代码前需要做的准备工作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、文件操作"><span class="nav-number">3.</span> <span class="nav-text">三、文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小文件拷贝"><span class="nav-number">3.0.1.</span> <span class="nav-text">小文件拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大文件拷贝"><span class="nav-number">3.0.2.</span> <span class="nav-text">大文件拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer（数据块）"><span class="nav-number">3.0.3.</span> <span class="nav-text">Buffer（数据块）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream（数据流）"><span class="nav-number">3.0.4.</span> <span class="nav-text">Stream（数据流）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#File-System（文件系统）"><span class="nav-number">3.0.5.</span> <span class="nav-text">File System（文件系统）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Path（路径）"><span class="nav-number">3.0.6.</span> <span class="nav-text">Path（路径）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历目录"><span class="nav-number">3.0.7.</span> <span class="nav-text">遍历目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步遍历、异步遍历"><span class="nav-number">3.0.8.</span> <span class="nav-text">同步遍历、异步遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件编码"><span class="nav-number">3.0.9.</span> <span class="nav-text">文件编码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#BOM移除"><span class="nav-number">3.0.9.1.</span> <span class="nav-text">BOM移除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GBK转UTF8（借助iconv-lite）"><span class="nav-number">3.0.9.2.</span> <span class="nav-text">GBK转UTF8（借助iconv-lite）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单字节编码"><span class="nav-number">3.0.9.3.</span> <span class="nav-text">单字节编码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">3.0.10.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、网络操作"><span class="nav-number">4.</span> <span class="nav-text">四、网络操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-number">4.0.1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS"><span class="nav-number">4.0.2.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">4.0.3.</span> <span class="nav-text">URL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#URL的各组成部分"><span class="nav-number">4.0.3.1.</span> <span class="nav-text">URL的各组成部分</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Query-String"><span class="nav-number">4.0.4.</span> <span class="nav-text">Query String</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zlib"><span class="nav-number">4.0.5.</span> <span class="nav-text">Zlib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Net"><span class="nav-number">4.0.6.</span> <span class="nav-text">Net</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、进程管理"><span class="nav-number">5.</span> <span class="nav-text">五、进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Process"><span class="nav-number">5.0.1.</span> <span class="nav-text">Process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Child-Process"><span class="nav-number">5.0.2.</span> <span class="nav-text">Child Process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cluster"><span class="nav-number">5.0.3.</span> <span class="nav-text">Cluster</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、异步编程"><span class="nav-number">6.</span> <span class="nav-text">六、异步编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码设计模式"><span class="nav-number">6.0.1.</span> <span class="nav-text">代码设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#遍历数组"><span class="nav-number">6.0.1.1.</span> <span class="nav-text">遍历数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常处理"><span class="nav-number">6.0.1.2.</span> <span class="nav-text">异常处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域（Domain）"><span class="nav-number">6.0.2.</span> <span class="nav-text">域（Domain）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结-1"><span class="nav-number">6.0.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tracer Lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">26k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">24 分钟</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="/lib/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'TQe5KMlCy35lzPcQ6cEqqW5v-gzGzoHsz',
+      appKey: 'HuAHMqsITXxz3v5igLAF3DXt',
+      placeholder: '说点什么...',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: true
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

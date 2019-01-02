@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文是 Vue.js 开发实战中的总结
+
+技术栈/架构Vue.js 2.0 + Vue Router + Vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js 2.0 之于酷狗 Mac 版及思考">
+<meta property="og:url" content="http://tracer.xin/2017/04/13/Vue2-0之于酷狗Mac版/index.html">
+<meta property="og:site_name" content="Tracer Lee's blog">
+<meta property="og:description" content="本文是 Vue.js 开发实战中的总结
+
+技术栈/架构Vue.js 2.0 + Vue Router + Vuex">
+<meta property="og:image" content="https://vuefe.cn/images/components.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/vuejs/vuex/dev/docs/en/images/vuex.png">
+<meta property="og:updated_time" content="2019-01-02T12:22:43.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js 2.0 之于酷狗 Mac 版及思考">
+<meta name="twitter:description" content="本文是 Vue.js 开发实战中的总结
+
+技术栈/架构Vue.js 2.0 + Vue Router + Vuex">
+<meta name="twitter:image" content="https://vuefe.cn/images/components.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://tracer.xin/2017/04/13/Vue2-0之于酷狗Mac版/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Vue.js 2.0 之于酷狗 Mac 版及思考 | Tracer Lee's blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8768b275e421754abc286e1d7e33b441";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tracer Lee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br/>公益 404</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tracer.xin/2017/04/13/Vue2-0之于酷狗Mac版/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tracer Lee"/>
+      <meta itemprop="description" content="学习，输出"/>
+      <meta itemprop="image" content="/private/img/Doraemon.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tracer Lee's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue.js 2.0 之于酷狗 Mac 版及思考
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-13 14:00:25" itemprop="dateCreated datePublished" datetime="2017-04-13T14:00:25+08:00">2017-04-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-02 20:22:43" itemprop="dateModified" datetime="2019-01-02T20:22:43+08:00">2019-01-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Vue-js/" itemprop="url" rel="index"><span itemprop="name">Vue.js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/13/Vue2-0之于酷狗Mac版/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/13/Vue2-0之于酷狗Mac版/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/13/Vue2-0之于酷狗Mac版/" class="leancloud_visitors" data-flag-title="Vue.js 2.0 之于酷狗 Mac 版及思考">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文是 Vue.js 开发实战中的总结</p>
+</blockquote>
+<h2 id="技术栈-架构"><a href="#技术栈-架构" class="headerlink" title="技术栈/架构"></a>技术栈/架构</h2><p><code>Vue.js 2.0</code> + <code>Vue Router</code> + <code>Vuex</code></p>
+<a id="more"></a>
+<h2 id="上手"><a href="#上手" class="headerlink" title="上手"></a>上手</h2><p>官网概括了三个关键词，“易用”、“灵活”、”性能”。</p>
+<p>关键词体现了Vue.js的主要特点，而实际开发中能感受到的优缺点却有不一样的体验。</p>
+<p>下面说说在酷狗Mac版开发过程中得到的一些主观感受：</p>
+<h3 id="新鲜！——新的构建方式"><a href="#新鲜！——新的构建方式" class="headerlink" title="新鲜！——新的构建方式"></a>新鲜！——新的构建方式</h3><ol>
+<li><p>单页面应用与单文件组件</p>
+<p>在Vue.js中，使用小型、自包含和通常可复用的组件构建大型应用程序是一个推荐的思路。</p>
+<p><img src="https://vuefe.cn/images/components.png" alt=""></p>
+<p>而创建单页面应用，使用<code>Vue.js + vue-router</code>这样的组合是非常简单的。</p>
+<p>将组件(components)映射到路由(routes)，渲染到指定区域，就搭起了SPA的基本脉络。</p>
+</li>
+<li><p>数据驱动视图更新</p>
+<p>Vue实例代理了其全部数据，数据响应式地触发了视图的更新。</p>
+<p>这样的基础设计摒弃了绝大多数的DOM层操作，不需要显式地通过事件、jQuery、querySelector等方式去处理交互。</p>
+<p>从这个层次来讲，开发者更需要关心地是数据的准确分析和处理。</p>
+</li>
+<li><p>热模块加载</p>
+<p>试用CLI基础脚手架构建应用，热模块加载方便了开发者的调试。</p>
+</li>
+</ol>
+<h3 id="麻烦？——特别的思路"><a href="#麻烦？——特别的思路" class="headerlink" title="麻烦？——特别的思路"></a>麻烦？——特别的思路</h3><p>组件通讯【demo：简单例子】</p>
+<ol>
+<li><p>父子组件</p>
+<ul>
+<li>Prop（父=&gt;子）：prop 是父组件用来传递数据的一个自定义属性。</li>
+<li>自定义事件（子=&gt;父）：父组件可以在使用子组件的地方直接用 <code>v-on</code> 来监听子组件触发的事件</li>
+</ul>
+</li>
+<li><p>非父子组件</p>
+<p>状态管理：Vuex</p>
+<blockquote>
+<p>这种集中式状态管理能够被更容易地理解哪种类型的 mutation 将会发生，以及它们是如何被触发。当错误出现时，我们现在也会有一个 log 记录 bug 之前发生了什么。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/vuejs/vuex/dev/docs/en/images/vuex.png" alt=""></p>
+</li>
+</ol>
+<h2 id="传统开发模式与Vue-js的对比"><a href="#传统开发模式与Vue-js的对比" class="headerlink" title="传统开发模式与Vue.js的对比"></a>传统开发模式与Vue.js的对比</h2><h3 id="事件绑定与视图更新"><a href="#事件绑定与视图更新" class="headerlink" title="事件绑定与视图更新"></a>事件绑定与视图更新</h3><ul>
+<li><p>传统DOM层</p>
+</li>
+<li><p>在HTML中监听事件</p>
+<blockquote>
+<p>你可能注意到这种事件监听的方式违背了关注点分离（separation of concern）传统理念。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护上的困难。实际上，使用 <code>v-on</code> 有几个好处：</p>
+<ol>
+<li>扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。</li>
+<li>因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。</li>
+<li>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ul>
+<li>AMD/CMD</li>
+<li>简单工厂模式</li>
+<li>Vue组件/Vuex</li>
+</ul>
+<h2 id="应用场景与方式"><a href="#应用场景与方式" class="headerlink" title="应用场景与方式"></a>应用场景与方式</h2><h3 id="新项目"><a href="#新项目" class="headerlink" title="新项目"></a>新项目</h3><ul>
+<li>SPA - Single-page Application（酷狗MAC版、潘多拉微信服务）</li>
+<li>MPA - Multi-page Application（声明式创建实例或Vue CLI脚手架改造(待研究)）</li>
+</ul>
+<h3 id="旧项目"><a href="#旧项目" class="headerlink" title="旧项目"></a>旧项目</h3><ul>
+<li>渐进重构（MPA）</li>
+</ul>
+<h3 id="维护成本"><a href="#维护成本" class="headerlink" title="维护成本"></a>维护成本</h3><ul>
+<li>有一定学习框架成本，普遍认为较React、Angular要低</li>
+<li>代码逻辑可读性更高，便于维护，书写更易</li>
+<li>框架设计理念先进，社区热度高</li>
+</ul>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul>
+<li>Vue.js 官方教程</li>
+<li>搜索引擎</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/总结/" rel="tag"># 总结</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/11/解决安装Node-js网速慢的问题/" rel="next" title="解决安装Node.js网速慢的问题">
+                <i class="fa fa-chevron-left"></i> 解决安装Node.js网速慢的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/19/2018，不要丧，要强/" rel="prev" title="2018，不要丧，要强">
+                2018，不要丧，要强 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/private/img/Doraemon.jpg"
+                alt="Tracer Lee"/>
+            
+              <p class="site-author-name" itemprop="name">Tracer Lee</p>
+              <p class="site-description motion-element" itemprop="description">学习，输出</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术栈-架构"><span class="nav-number">1.</span> <span class="nav-text">技术栈/架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上手"><span class="nav-number">2.</span> <span class="nav-text">上手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新鲜！——新的构建方式"><span class="nav-number">2.1.</span> <span class="nav-text">新鲜！——新的构建方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#麻烦？——特别的思路"><span class="nav-number">2.2.</span> <span class="nav-text">麻烦？——特别的思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统开发模式与Vue-js的对比"><span class="nav-number">3.</span> <span class="nav-text">传统开发模式与Vue.js的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件绑定与视图更新"><span class="nav-number">3.1.</span> <span class="nav-text">事件绑定与视图更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">3.2.</span> <span class="nav-text">设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景与方式"><span class="nav-number">4.</span> <span class="nav-text">应用场景与方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新项目"><span class="nav-number">4.1.</span> <span class="nav-text">新项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旧项目"><span class="nav-number">4.2.</span> <span class="nav-text">旧项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维护成本"><span class="nav-number">4.3.</span> <span class="nav-text">维护成本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习"><span class="nav-number">5.</span> <span class="nav-text">学习</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tracer Lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">26k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">24 分钟</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.2.2</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="/lib/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'TQe5KMlCy35lzPcQ6cEqqW5v-gzGzoHsz',
+      appKey: 'HuAHMqsITXxz3v5igLAF3DXt',
+      placeholder: '说点什么...',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: true
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
