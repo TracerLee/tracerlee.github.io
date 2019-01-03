@@ -1031,15 +1031,13 @@ vendors:
   # leancloud-storage
   # See: https://www.npmjs.com/package/leancloud-storage
   # Example:
-  # leancloud: //cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js
-  leancloud:
+  leancloud: //cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js
 
   # valine
   # See: https://github.com/xCss/Valine
   # Example:
-  # valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
+  valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
   # valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.4/Valine.min.js
-  valine:
 
   # gitalk
   # See: https://github.com/gitalk/gitalk
